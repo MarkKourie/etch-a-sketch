@@ -18,6 +18,9 @@ function addGridAttribute(element, numberOfColumnsAndRows) {
     element.setAttribute('style', `grid-template-columns: repeat(${numberOfColumnsAndRows}, minmax(1px, 1fr)); grid-template-rows: repeat(${numberOfColumnsAndRows}, minmax(1px, 1fr))`)
 }
 
+//execute grid setup
+setupGrid();
+
 //the code that determines behaviour of grid items
 var items = document.querySelectorAll('.item');
 
@@ -55,5 +58,8 @@ resetButton.addEventListener('click', (e) => {
     })
 });
 
-//execute grid setup
-setupGrid();
+// Still to do:
+// 1. Add resize button rather than simple prompt on load
+// 2. Add colour option toggles
+// 3. Add hold to paint toggle (off means mouseenter, on means mouse hold)
+// 4. Structure layout with CSS - make sketchpad centred, buttons in a nav, nice background, etc.
