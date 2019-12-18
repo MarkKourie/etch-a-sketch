@@ -1,0 +1,13 @@
+.item {
+    background-color: cornflowerblue;
+}
+
+#container {
+    height: 500px;
+    width: 500px;
+    border-radius: 1px;
+    display: grid;
+    background-color: black;
+    border-style: solid;
+    border-color: red;
+}
