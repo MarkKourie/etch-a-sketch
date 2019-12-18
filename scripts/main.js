@@ -1,5 +1,5 @@
+//setting up the grid container
 const container = document.querySelector('#container');
-
 
 function setupGrid() {
     const numberOfBlocks = parseInt(prompt("Choose number of rows/columns in the grid", '16'));
@@ -11,28 +11,49 @@ function setupGrid() {
         fragment.appendChild(grid);
     };
     container.appendChild(fragment);
-    container.setAttribute("style", `
-    grid-template-columns: repeat(${numberOfBlocks}, minmax(1px, 1fr)); 
-    grid-template-rows: repeat(${numberOfBlocks}, minmax(1px, 1fr))`); 
+    addGridAttribute(container, numberOfBlocks)
 }
 
-setupGrid();
+function addGridAttribute(element, numberOfColumnsAndRows) {
+    element.setAttribute('style', `grid-template-columns: repeat(${numberOfColumnsAndRows}, minmax(1px, 1fr)); grid-template-rows: repeat(${numberOfColumnsAndRows}, minmax(1px, 1fr))`)
+}
 
+//the code that determines behaviour of grid items
 var items = document.querySelectorAll('.item');
 
 items.forEach((item) => {
     item.addEventListener('mouseenter', (e) => {
-        if ((item.getAttribute('style') == null) 
-            || (item.getAttribute('style').slice(-5, -3) < 10)) { 
-        item.setAttribute("style", `background-color: 
-        hsl(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 101)}%, ${Math.floor(Math.random() * 101)}%);`);
-        console.log(item.getAttribute('style').slice(-5, -3))
+        if (item.getAttribute('style') == null) { 
+            randomiseHSLColor(item);
+        } else if (item.getAttribute('style').slice(-5, -3) >= 10) {
+            removeTenLightness(item);
         } else {
-            item.setAttribute("style", 
-                `${item.getAttribute('style').slice(0, -6)} ${(item.getAttribute('style').slice(-5, -3) - 10)}%);`);
-            console.log(item.getAttribute('style'))
+            paintedBlack(item);
         }
     })
 
 })
 
+function randomiseHSLColor(element) {
+    element.setAttribute('style', `background-color: hsl(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 101)}%, ${Math.floor(Math.random() * 101)}%);`);
+}
+
+function removeTenLightness(element) {
+    element.setAttribute('style', `${element.getAttribute('style').slice(0, -6)} ${(element.getAttribute('style').slice(-5, -3) - 10)}%);`);
+}
+
+function paintedBlack(element) {
+    element.setAttribute('style', 'background-color: hsl(000, 0%, 0%');
+}
+
+//reset button
+var resetButton = document.querySelector('#reset');
+
+resetButton.addEventListener('click', (e) => {
+    items.forEach((item) => {
+        item.removeAttribute('style');
+    })
+});
+
+//execute grid setup
+setupGrid();
