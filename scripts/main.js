@@ -1,5 +1,5 @@
 window.onload = function() {
-    document.getElementById('number-of-blocks').value = 16;
+    document.getElementById('number-of-blocks').value = 3;
     setupGrid();
     colorChangeBehaviour();
 }
@@ -30,7 +30,7 @@ function colorChangeBehaviour() {
             if (item.getAttribute('style') == null) { 
                 randomiseHSLColor(item);
             } else if (item.getAttribute('style').slice(-5, -3) >= 10) {
-                removeTenLightness(item);
+                removeLightness(item);
             } else {
                 paintedBlack(item);
             }
@@ -39,11 +39,11 @@ function colorChangeBehaviour() {
 }
 
 function randomiseHSLColor(element) {
-    element.setAttribute('style', `background-color: hsl(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 101)}%, ${Math.floor(Math.random() * 101)}%);`);
+    element.setAttribute('style', `background-color: hsl(${Math.floor(Math.random() * 256)}, 100%, 50%);`);
 }
 
-function removeTenLightness(element) {
-    element.setAttribute('style', `${element.getAttribute('style').slice(0, -6)} ${(element.getAttribute('style').slice(-5, -3) - 10)}%);`);
+function removeLightness(element) {
+    element.setAttribute('style', `${element.getAttribute('style').slice(0, -6)} ${(element.getAttribute('style').slice(-5, -3) - 5)}%);`);
 }
 
 function paintedBlack(element) {
