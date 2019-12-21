@@ -6,12 +6,20 @@
         <link href="styles/style.css" type="text/css" rel="stylesheet"> 
     </head>
     <body>
+        <div id="heading">
+            <h1>Etch-a-Sketch</h1>
+        </div>
         <div id="container"></div>
-        <button id="reset">Clear Canvas</button>
-        <button id="resize">Resize Canvas</button>
-        <form>Number of rows/columns on canvas (max 256):
-            <input id="number-of-blocks" type="number" value="16" min="1" max="256">
-        </form>
+        <div id="tool-box">
+            <button class="tools" id="reset">Clear Canvas</button>
+            <button class="tools" id="resize">Resize Canvas</button>
+            <input class="tools" id="greyscale" type="radio" name="brush-color" value="greyscale-mode">Greyscale</input>
+            <input class="tools" id="rainbow" type="radio" name="brush-color" value="rainbow-mode" checked>Rainbow</input>
+            <input class="tools" id="black" type="radio" name="brush-color" value="black-mode" checked>Black</input>
+            <form class="tools">Number of rows/columns on canvas (max 256):
+                <input class="tools"id="number-of-blocks" type="number" value="3" min="1" max="256">
+            </formclass="tools">
+        </div>
         <script src="scripts/main.js"></script>
     </body>
 </html>

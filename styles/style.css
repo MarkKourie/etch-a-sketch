@@ -9,5 +9,46 @@
     display: grid;
     background-color: black;
     border-style: solid;
-    border-color: red;
+    border-color: #252525;
+    margin: auto;
+}
+#tool-box {
+    margin: auto;
+    width: 500px;
+    text-align: center;
+    color: ivory;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #2a2a2a;
+    margin: auto;
+    padding: 1.25% ; 
+}
+
+#heading {
+    width: 500px;
+    color: ivory;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: auto;
+    text-align: center;
+}
+
+.tools {
+    color: ivory;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #2a2a2a;
+    margin: auto;
+    border: 2px outset ivory;
+    padding: 1.25% ; 
+}
+
+body {
+    background-color: #2a2a2a;
+}
+
+#resize, #reset {
+    margin-bottom: 1em;
+}
+
+#number-of-blocks {
+    border-style: none;
+    width: 3em;
 }

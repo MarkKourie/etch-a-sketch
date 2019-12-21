@@ -27,13 +27,13 @@ function colorChangeBehaviour() {
     var items = document.querySelectorAll('.item');
     items.forEach((item) => {
         item.addEventListener('mouseenter', (e) => {
-            if (item.getAttribute('style') == null) { 
+            if (item.getAttribute('style') == null && document.getElementById('rainbow').checked) { 
                 randomiseHSLColor(item);
-            } else if (item.getAttribute('style').slice(-5, -3) >= 10) {
-                removeLightness(item);
-            } else {
+            } else if (document.getElementById('black').checked) {
                 paintedBlack(item);
-            }
+            } else {
+                removeLightness(item);
+            } 
         })
     })
 }
@@ -43,7 +43,14 @@ function randomiseHSLColor(element) {
 }
 
 function removeLightness(element) {
-    element.setAttribute('style', `${element.getAttribute('style').slice(0, -6)} ${(element.getAttribute('style').slice(-5, -3) - 5)}%);`);
+    if (element.getAttribute('style') == null) {
+        element.setAttribute('style', 'background-color: hsl(0, 0%, 90%);');
+    } else if (element.getAttribute('style').slice(-6, -3) >= 10) {
+        console.log(element.getAttribute('style'));
+        element.setAttribute('style', `${element.getAttribute('style').slice(0, -6)} ${(element.getAttribute('style').slice(-6, -3) - 5)}%);`);
+    } else {
+        paintedBlack(element);
+    }
 }
 
 function paintedBlack(element) {
@@ -71,8 +78,3 @@ resizeButton.addEventListener('click', (e) => {
     colorChangeBehaviour();
     removeStyle();
 });
-
-// Still to do:
-// 2. Add colour option toggles
-// 3. Add hold to paint toggle (off means mouseenter, on means mouse hold)
-// 4. Structure layout with CSS - make sketchpad centred, buttons in a nav, nice background, etc.
