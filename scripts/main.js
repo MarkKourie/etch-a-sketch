@@ -4,6 +4,15 @@ window.onload = function() {
     colorChangeBehaviour();
 }
 
+function alertInvalidInput() {
+    var userInput = document.getElementById('number-of-blocks').value;
+    if (userInput > 256 || userInput <= 0) {
+        alert("Please enter a number between 1 and 256. Thank you.")
+    }
+}
+
+
+
 const container = document.querySelector('#container');
 
 function setupGrid() {
@@ -31,6 +40,8 @@ function colorChangeBehaviour() {
                 randomiseHSLColor(item);
             } else if (document.getElementById('black').checked) {
                 paintedBlack(item);
+            } else if (document.getElementById('eraser').checked) {
+                item.removeAttribute('style');
             } else {
                 removeLightness(item);
             } 
@@ -46,7 +57,6 @@ function removeLightness(element) {
     if (element.getAttribute('style') == null) {
         element.setAttribute('style', 'background-color: hsl(0, 0%, 90%);');
     } else if (element.getAttribute('style').slice(-6, -3) >= 10) {
-        console.log(element.getAttribute('style'));
         element.setAttribute('style', `${element.getAttribute('style').slice(0, -6)} ${(element.getAttribute('style').slice(-6, -3) - 5)}%);`);
     } else {
         paintedBlack(element);
@@ -74,7 +84,10 @@ resetButton.addEventListener('click', (e) => removeStyle());
 
 var resizeButton = document.querySelector('#resize');
 resizeButton.addEventListener('click', (e) => {
+    alertInvalidInput();
     setupGrid();
     colorChangeBehaviour();
     removeStyle();
 });
+
+// alert max number of blocks!
